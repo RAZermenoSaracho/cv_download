@@ -9,7 +9,7 @@ function headerSection() {
         "+52 55 3360 9029  ·  ",
         "ricardozs_96@hotmail.com",
         "  ·  ",
-        { text: "razs.vercel.app", link: "https://razs.dev" },
+        { text: "razs.dev", link: "https://razs.dev" },
         "  ·  ",
         {
           text: "linkedin.com/in/ricardo-zermeno",
