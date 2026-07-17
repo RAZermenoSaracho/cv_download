@@ -40,7 +40,7 @@ function jobBlock(job) {
         { text: job.dates, style: "itemMeta", alignment: "right" },
       ],
     },
-    { text: job.role, style: "itemMeta", margin: [0, 0, 0, 3] },
+    { text: job.role, style: "itemMeta", margin: [0, 2, 0, 3] },
     {
       ul: job.achievements,
       style: "bullet",
