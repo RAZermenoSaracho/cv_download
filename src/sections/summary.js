@@ -11,6 +11,7 @@ function summarySection() {
         "PostgreSQL, JavaScript/TypeScript, React, Solidity, Foundry. Particular interest in the " +
         "intersection of software engineering, financial markets, quantitative research, and DeFi.",
       style: "body",
+      alignment: "justify",
     },
   ];
 }

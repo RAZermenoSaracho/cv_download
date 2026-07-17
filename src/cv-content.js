@@ -18,7 +18,7 @@ function buildCvDocDefinition() {
     pageSize: "A4",
     pageMargins: [40, 40, 40, 40],
     defaultStyle: {
-      font: "Helvetica",
+      font: "Times",
       fontSize: 9.5,
     },
     styles: namedStyles,
