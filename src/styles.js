@@ -21,9 +21,9 @@ const fonts = {
 };
 
 const spacing = {
-  sectionGapBefore: 14,
-  sectionGapAfter: 4,
-  itemGap: 8,
+  sectionGapBefore: 10,
+  sectionGapAfter: 3,
+  itemGap: 7,
 };
 
 const namedStyles = {
