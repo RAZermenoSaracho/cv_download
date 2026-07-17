@@ -1,0 +1,14 @@
+{
+  "name": "cv-download",
+  "version": "1.0.0",
+  "description": "Fastify API that generates Ricardo Zermeno's CV as a PDF on demand using pdfmake",
+  "type": "commonjs",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "fastify": "^5.0.0",
+    "pdfmake": "^0.2.10"
+  }
+}
