@@ -27,7 +27,7 @@ function projectBlock(project) {
   return {
     text: [
       { text: `${project.name}\n`, style: "itemTitle" },
-      { text: `Tech: ${project.tech}`, fontSize: 9, color: colors.muted, margin: [0, 2, 0, 0] },
+      { text: `Tech: ${project.tech}`, fontSize: 9, color: colors.muted },
     ],
     margin: [0, 0, 0, spacing.itemGap],
   };
