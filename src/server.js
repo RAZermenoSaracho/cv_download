@@ -1,4 +1,5 @@
 const Fastify = require("fastify");
+const cors = require("@fastify/cors");
 const PdfPrinter = require("pdfmake");
 const { buildCvDocDefinition, fonts } = require("./cv-content");
 
@@ -7,6 +8,11 @@ const HOST = process.env.HOST || "127.0.0.1";
 
 const fastify = Fastify({ logger: true });
 const printer = new PdfPrinter(fonts);
+
+fastify.register(cors, {
+  origin: ["https://razs.dev", "http://localhost:5173"],
+  methods: ["GET"],
+});
 
 function generateCvPdfBuffer() {
   const pdfDoc = printer.createPdfKitDocument(buildCvDocDefinition());
