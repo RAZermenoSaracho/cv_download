@@ -1,6 +1,8 @@
 // Assembles the final pdfmake docDefinition by combining every section.
-// Update a section by editing its file under sections/ — this file only
-// concerns page-level settings and section ordering.
+// Update a section's rendering by editing its file under sections/, or its
+// data under content/base/ (or a content/<slug>/ override) — this file only
+// concerns page-level settings, section ordering, and wiring content to
+// sections.
 
 const { fonts, namedStyles } = require("./styles");
 
@@ -13,7 +15,7 @@ const educationSection = require("./sections/education");
 const certificationsSection = require("./sections/certifications");
 const languagesSection = require("./sections/languages");
 
-function buildCvDocDefinition() {
+function buildCvDocDefinition(content) {
   return {
     pageSize: "A4",
     pageMargins: [40, 40, 40, 40],
@@ -27,14 +29,14 @@ function buildCvDocDefinition() {
       author: "Ricardo Arturo Zermeño Saracho",
     },
     content: [
-      ...headerSection(),
-      ...summarySection(),
-      ...skillsSection(),
-      ...experienceSection(),
-      ...projectsSection(),
-      ...educationSection(),
-      ...certificationsSection(),
-      ...languagesSection(),
+      ...headerSection(content.header),
+      ...summarySection(content.summary),
+      ...skillsSection(content.skills),
+      ...experienceSection(content.experience),
+      ...projectsSection(content.projects),
+      ...educationSection(content.education),
+      ...certificationsSection(content.certifications),
+      ...languagesSection(content.languages),
     ],
   };
 }

@@ -1,25 +1,22 @@
 // Name, title, and contact info block at the top of the CV.
 
-function headerSection() {
+function headerSection(content) {
   return [
-    { text: "Ricardo Arturo Zermeño Saracho", style: "name" },
-    { text: "Software Engineer — DeFi & Quantitative Systems", style: "titleLine" },
+    { text: content.name, style: "name" },
+    { text: content.title, style: "titleLine" },
     {
       text: [
-        "+52 55 3360 9029  ·  ",
-        "ricardozs_96@hotmail.com",
+        `${content.phone}  ·  `,
+        content.email,
         "  ·  ",
-        { text: "razs.dev", link: "https://razs.dev" },
+        { text: content.website.text, link: content.website.link },
         "  ·  ",
-        {
-          text: "linkedin.com/in/ricardo-zermeno",
-          link: "https://linkedin.com/in/ricardo-zermeno",
-        },
+        { text: content.linkedin.text, link: content.linkedin.link },
       ],
       style: "contactLine",
     },
     {
-      text: "Mexico City, Mexico · Open to Remote",
+      text: content.location,
       style: "contactLine",
       margin: [0, 2, 0, 8],
     },
