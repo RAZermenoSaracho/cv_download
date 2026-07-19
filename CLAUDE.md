@@ -54,7 +54,10 @@ re-explaining the architecture.
   - `loadContent(slug)` for an existing `src/content/<slug>/` → merges
     file-by-file: if `<slug>/<section>.js` exists, its value is used **whole**
     (never merged field-by-field with base's value); otherwise base's value
-    for that section is used.
+    for that section is used. **Exception: `header.js`** is merged
+    field-by-field (`{ ...base.header, ...override }`), since a vacante
+    override only ever sets `title` and must keep inheriting
+    `name`/`phone`/`email`/`website`/`linkedin`/`location` from base.
   - `loadContent(slug)` for a slug with no matching directory → throws
     `ContentNotFoundError` (importable from the same module), which the route
     layer turns into a 404.
@@ -242,6 +245,23 @@ intersection of software engineering, financial markets, quantitative research, 
 
 When creating/updating a `src/content/<slug>/` directory for a specific job:
 
+- **header.js**: SHOULD be overridden per vacante, but only the `title`
+  field — never `name`, `phone`, `email`, `website`, `linkedin`, or
+  `location`, which never change. The override file exports only
+  `{ title: "..." }`, so the rest of `header` still falls back to `base/`.
+  The new title must:
+  - Keep the "Software Engineer" framing — never swap in another career
+    title (e.g. never "Security Researcher", "Investment Analyst", "Trader"
+    on its own). Ricardo positions as a software engineer even for
+    research/security/trading vacantes.
+  - Follow the same format as base's title: `"Software Engineer —
+    {vacante domain}"`, e.g. `"Software Engineer — Smart Contract
+    Security"`, `"Software Engineer — Quantitative Trading Systems"`,
+    `"Software Engineer — DeFi Research"`. The domain comes from the real
+    vacante (Job Title + Tags + Job Description), never an invented one.
+  - Follow the same Ground truth constraint as every other section: base
+    the domain phrase on what the vacante asks for, not on technologies
+    Ricardo doesn't have.
 - **skills.js / projects.js**: reorder/prioritize entries so the most
   relevant items to that vacante come first. Only reorder — never add
   technologies, tools, or projects that aren't in `base/`.
@@ -252,10 +272,12 @@ When creating/updating a `src/content/<slug>/` directory for a specific job:
 - **experience.js / education.js**: normally omitted from the override
   (falls back to base) unless a specific bullet needs rephrasing to surface
   something already true — never to add new claims.
-- **header.js / certifications.js / languages.js**: normally omitted from the
-  override (falls back to base) — these don't vary by vacante.
-- A section file should only be created in `<slug>/` if it actually differs
-  from base; omitting it is the correct default.
+- **certifications.js / languages.js**: normally omitted from the override
+  (falls back to base) — these don't vary by vacante.
+- Beyond `header.js`'s `title` (always expected) and `summary.js`/`skills.js`/
+  `projects.js` (expected whenever they differ from base), a section file
+  should only be created in `<slug>/` if it actually differs from base;
+  omitting it is the correct default.
 
 ### Cómo procesar un Excel de vacantes
 
@@ -270,9 +292,11 @@ que piden los trabajos en este Excel", with an Excel attached.
    and `Job Title`.
 2. If `src/content/<slug>/` already exists, skip that row (don't overwrite
    existing tailoring).
-3. Otherwise, create `src/content/<slug>/` with only the section-file
-   overrides needed per the tailoring rules above, derived from `Job
-   Description` and `Tags` — grounded strictly in the "Ground truth" block.
+3. Otherwise, create `src/content/<slug>/` with the section-file overrides
+   needed per the tailoring rules above, derived from `Job Description` and
+   `Tags` — grounded strictly in the "Ground truth" block. This always
+   includes `header.js` (`title` only, per the rule above) alongside
+   `summary.js`, `skills.js`, and `projects.js`.
 4. No changes to `server.js` are needed — the route is picked up automatically
    next server start.
 

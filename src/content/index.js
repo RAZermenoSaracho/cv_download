@@ -1,7 +1,10 @@
 // Content loader: resolves the data for a CV variant by merging a job-specific
 // override directory over src/content/base/, file by file. Each section file
 // either exists in the override dir (used whole, replacing base's value) or
-// falls back to base/. See CLAUDE.md for the full tailoring workflow.
+// falls back to base/. header.js is the one exception: it's merged field by
+// field, since overrides only ever touch `title` and must keep inheriting
+// name/phone/email/website/linkedin/location from base. See CLAUDE.md for the
+// full tailoring workflow.
 
 const fs = require("fs");
 const path = require("path");
@@ -34,6 +37,12 @@ function loadSection(dir, sectionName) {
   return require(filePath);
 }
 
+function mergeSection(sectionName, baseValue, overrideValue) {
+  if (overrideValue === undefined) return baseValue;
+  if (sectionName === "header") return { ...baseValue, ...overrideValue };
+  return overrideValue;
+}
+
 function loadContent(slug) {
   if (!slug || slug === "base") {
     const content = {};
@@ -50,7 +59,9 @@ function loadContent(slug) {
 
   const content = {};
   for (const name of SECTION_NAMES) {
-    content[name] = loadSection(slugDir, name) ?? loadSection(BASE_DIR, name);
+    const baseValue = loadSection(BASE_DIR, name);
+    const overrideValue = loadSection(slugDir, name);
+    content[name] = mergeSection(name, baseValue, overrideValue);
   }
   return content;
 }
