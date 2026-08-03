@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on:
+      - self-hosted
+      - cv-download
+
+    steps:
+      - name: Update repository
+        run: |
+          cd /Users/razs/projects/cv_download
+          git fetch origin
+          git reset --hard origin/master
+
+      - name: Install dependencies
+        run: |
+          cd /Users/razs/projects/cv_download
+          npm install
+
+      - name: Restart API
+        run: |
+          pm2 restart cv-download-api
