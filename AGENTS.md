@@ -3,16 +3,6 @@
 Fastify API that generates Ricardo Arturo Zermeño Saracho's general CV as a PDF on demand using pdfmake, 
 for the "Download CV" button on the portfolio.
 
-## Language Policy
-All repository content must always be written in English. This includes source code, comments,
-documentation, README files, logs, commit messages, PR descriptions, tests, examples,
-configuration, and API fields. There are no exceptions.
-
-## User Interaction
-The user may communicate with Claude in Spanish. Regardless of the language used in
-conversation, every repository artifact (code, comments, documentation, commit messages, PR
-descriptions, etc.) must always be written in English.
-
 ## Goal
 - Single endpoint: GET /cv
 - Generates the PDF in memory with pdfmake and returns it as a stream/buffer
@@ -24,7 +14,7 @@ descriptions, etc.) must always be written in English.
   updated later without touching server logic (the CV will change as Ricardo's career evolves)
 
 ## CV content
-The source content lives in the resume PDF attached to the Claude project 
+The source content lives in the resume PDF attached to the Codex project 
 (RicardoArturoZermenoSarachoResume_1.pdf) and the agreed positioning decisions:
 - Title: "Software Engineer — DeFi & Quantitative Systems"
 - Target roles: web3 / DeFi / quantitative trading
@@ -43,11 +33,11 @@ The source content lives in the resume PDF attached to the Claude project
 - Do not include testing instructions in work prompts — Ricardo tests independently
 - Show the plan (port, subdomain, folder structure) before generating code, wait for confirmation
 
-## Content/tailoring system (per-job CV variants)
+## Content/tailoring system (per-vacante CV variants)
 
-This is the system that lets a single prompt like "Generate versions of my CV
-that meet what the jobs in this Excel file are asking for" be executed
-without re-explaining the architecture.
+This is the system that lets a single prompt like "Generame versiones de mi CV
+que cumplan con lo que piden los trabajos en este Excel" be executed without
+re-explaining the architecture.
 
 ### Structure
 
@@ -56,7 +46,7 @@ without re-explaining the architecture.
   `skills.js`, `experience.js`, `projects.js`, `education.js`,
   `certifications.js`, `languages.js`. This is the single source of truth for
   Ricardo's real experience.
-- `src/content/<slug>/` — one directory per job, created only when
+- `src/content/<slug>/` — one directory per vacante, created only when
   tailoring for a specific job. Each directory may export any subset of the
   same section files; any file it doesn't export falls back to `base/`.
 - `src/content/index.js` exports `loadContent(slug)`:
@@ -65,7 +55,7 @@ without re-explaining the architecture.
     file-by-file: if `<slug>/<section>.js` exists, its value is used **whole**
     (never merged field-by-field with base's value); otherwise base's value
     for that section is used. **Exception: `header.js`** is merged
-    field-by-field (`{ ...base.header, ...override }`), since a job
+    field-by-field (`{ ...base.header, ...override }`), since a vacante
     override only ever sets `title` and must keep inheriting
     `name`/`phone`/`email`/`website`/`linkedin`/`location` from base.
   - `loadContent(slug)` for a slug with no matching directory → throws
@@ -81,7 +71,7 @@ without re-explaining the architecture.
 
 ### Slug convention
 
-- Format: `{company}_{short_role}`, all lowercase, snake_case.
+- Format: `{empresa}_{puesto_corto}`, all lowercase, snake_case.
   Example: `bitmart_on_chain_quant_dev`.
 - The slug is used as BOTH the directory name under `src/content/` and the
   Fastify route name (`GET /{slug}`) — they must always match.
@@ -90,27 +80,27 @@ without re-explaining the architecture.
 
 - `server.js` reads `listContentSlugs()` at startup and registers one
   `GET /{slug}` route per directory found under `src/content/` (excluding
-  `base/`), automatically. **Never edit `server.js` by hand to add a job
+  `base/`), automatically. **Never edit `server.js` by hand to add a vacante
   route** — creating the directory is enough.
 - The existing `GET /cv` route (generic CV, `loadContent("base")`) is
   untouched and always present.
-- Each per-job route loads content with `loadContent(slug)`, builds the
+- Each per-vacante route loads content with `loadContent(slug)`, builds the
   PDF the same way as `/cv`, and serves it as
   `attachment; filename="Ricardo_Zermeno_CV_{slug}.pdf"`.
 - A slug with no matching directory is simply never registered as a route, so
   it naturally 404s.
 
-### Ground truth — do not invent
+### Ground truth — no inventar
 
 Everything below is copied verbatim from `src/content/base/`. Tailoring for a
-job may reorder, re-emphasize, or rephrase this content — it must never
+vacante may reorder, re-emphasize, or rephrase this content — it must never
 add technologies, employers, results, or experience not already listed here.
 
 **header.js**
 ```js
 {
   name: "Ricardo Arturo Zermeño Saracho",
-  title: "Web3 Software Engineer",
+  title: "Software Engineer — DeFi & Quantitative Systems",
   phone: "+52 55 3360 9029",
   email: "ricardozs_96@hotmail.com",
   website: { text: "razs.dev", link: "https://razs.dev" },
@@ -251,54 +241,54 @@ intersection of software engineering, financial markets, quantitative research, 
 ]
 ```
 
-### Tailoring rules per job
+### Tailoring rules per vacante
 
 When creating/updating a `src/content/<slug>/` directory for a specific job:
 
-- **header.js**: SHOULD be overridden per job, but only the `title`
+- **header.js**: SHOULD be overridden per vacante, but only the `title`
   field — never `name`, `phone`, `email`, `website`, `linkedin`, or
   `location`, which never change. The override file exports only
   `{ title: "..." }`, so the rest of `header` still falls back to `base/`.
   The new title must:
-  - Keep the "Web3 Software Engineer" framing — never swap in another career
+  - Keep the "Software Engineer" framing — never swap in another career
     title (e.g. never "Security Researcher", "Investment Analyst", "Trader"
     on its own). Ricardo positions as a software engineer even for
-    research/security/trading roles.
-  - Follow the same format as base's title: `"Web3 Software Engineer —
-    {job domain}"`, e.g. `"Web3 Software Engineer — Smart Contract
+    research/security/trading vacantes.
+  - Follow the same format as base's title: `"Software Engineer —
+    {vacante domain}"`, e.g. `"Software Engineer — Smart Contract
     Security"`, `"Software Engineer — Quantitative Trading Systems"`,
-    `"Web3 Software Engineer — DeFi Research"`. The domain comes from the real
-    job listing (Job Title + Tags + Job Description), never an invented one.
+    `"Software Engineer — DeFi Research"`. The domain comes from the real
+    vacante (Job Title + Tags + Job Description), never an invented one.
   - Follow the same Ground truth constraint as every other section: base
-    the domain phrase on what the job listing asks for, not on technologies
+    the domain phrase on what the vacante asks for, not on technologies
     Ricardo doesn't have.
 - **skills.js / projects.js**: reorder/prioritize entries so the most
-  relevant items to that job come first. Only reorder — never add
+  relevant items to that vacante come first. Only reorder — never add
   technologies, tools, or projects that aren't in `base/`.
 - **summary.js**: rewrite as 2-4 lines reflecting the language/domain of the
-  job (e.g. lead with "quant" framing for a trading role, "on-chain"
+  vacante (e.g. lead with "quant" framing for a trading role, "on-chain"
   framing for a protocol role), always grounded in experience already present
   in `base/`.
 - **experience.js / education.js**: normally omitted from the override
   (falls back to base) unless a specific bullet needs rephrasing to surface
   something already true — never to add new claims.
 - **certifications.js / languages.js**: normally omitted from the override
-  (falls back to base) — these don't vary by job.
+  (falls back to base) — these don't vary by vacante.
 - Beyond `header.js`'s `title` (always expected) and `summary.js`/`skills.js`/
   `projects.js` (expected whenever they differ from base), a section file
   should only be created in `<slug>/` if it actually differs from base;
   omitting it is the correct default.
 
-### How to process a job listings Excel file
+### Cómo procesar un Excel de vacantes
 
-Triggered by a prompt such as "Generate versions of my CV that meet what the
-jobs in this Excel file are asking for", with an Excel file attached.
+Triggered by a prompt such as "Generame versiones de mi CV que cumplan con lo
+que piden los trabajos en este Excel", with an Excel attached.
 
 **Expected Excel format** (as exported by `job_scraper`): columns `Job Title`,
 `Company Name`, `Job Description`, `Job Location`, `Job Url`, `Tags`, `Notes`.
 
 **Process, per row:**
-1. Derive `slug` = `{company}_{short_role}` in snake_case from `Company Name`
+1. Derive `slug` = `{empresa}_{puesto_corto}` in snake_case from `Company Name`
    and `Job Title`.
 2. If `src/content/<slug>/` already exists, skip that row (don't overwrite
    existing tailoring).
