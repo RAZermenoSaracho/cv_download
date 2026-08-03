@@ -37,7 +37,7 @@ fastify.get("/cv", async (request, reply) => {
 });
 
 // One GET /{slug} route per directory under src/content/ (excluding base/).
-// Adding a new vacante directory does not require touching this file.
+// Adding a new job directory does not require touching this file.
 for (const slug of listContentSlugs()) {
   fastify.get(`/${slug}`, async (request, reply) => {
     const pdfBuffer = await generateCvPdfBuffer(loadContent(slug));

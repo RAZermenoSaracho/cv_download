@@ -24,8 +24,7 @@ module.exports = [
     role: "Project Manager",
     dates: "2021 – 2023",
     achievements: [
-      "Managed construction and real estate projects: budgeting, scheduling, execution, and stakeholder coordination",
-      "Led multidisciplinary teams of up to 20 people (engineering, architecture, contractors, suppliers)",
+      "Managed construction and real estate projects while leading multidisciplinary teams of up to 20 engineers, architects, contractors, and suppliers through budgeting, scheduling, execution, and stakeholder coordination.",
     ],
   },
 ];
