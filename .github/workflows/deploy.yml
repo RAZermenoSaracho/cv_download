@@ -14,13 +14,13 @@ jobs:
     steps:
       - name: Update repository
         run: |
-          cd /Users/razs/projects/cv_download
+          cd /Users/razs/production/cv_download
           git fetch origin
           git reset --hard origin/master
 
       - name: Install dependencies
         run: |
-          cd /Users/razs/projects/cv_download
+          cd /Users/razs/production/cv_download
           npm install
 
       - name: Restart API
