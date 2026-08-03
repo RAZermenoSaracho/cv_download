@@ -24,9 +24,9 @@ descriptions, etc.) must always be written in English.
   updated later without touching server logic (the CV will change as Ricardo's career evolves)
 
 ## CV content
-The source content lives in the resume PDF attached to the Claude project 
+The source content lives in the resume PDF originally attached to the project
 (RicardoArturoZermenoSarachoResume_1.pdf) and the agreed positioning decisions:
-- Title: "Software Engineer — DeFi & Quantitative Systems"
+- Title: "Web3 Software Engineer"
 - Target roles: web3 / DeFi / quantitative trading
 
 ## Infra (same pattern as job_scraper and job_scraper_frontend)
