@@ -80,3 +80,4 @@ GitHub Actions runner).
 All repository content — code, comments, documentation, commit messages, PR descriptions,
 tests, examples, configuration, and API fields — must always be written in English, regardless
 of the language used in conversation while working on this project.
+ 
