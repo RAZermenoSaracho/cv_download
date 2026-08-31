@@ -105,6 +105,9 @@ without re-explaining the architecture.
 Everything below is copied verbatim from `src/content/base/`. Tailoring for a
 job may reorder, re-emphasize, or rephrase this content — it must never
 add technologies, employers, results, or experience not already listed here.
+Note on `AI-Assisted Development`: Ricardo is working toward a Claude Code
+certification but has not yet obtained it — never phrase this as a
+certification held, only as familiarity with the listed tools.
 
 **header.js**
 ```js
@@ -138,7 +141,8 @@ intersection of software engineering, financial markets, quantitative research, 
   { category: "Frontend", items: "React, TypeScript, Tailwind CSS, Vite" },
   {
     category: "Blockchain",
-    items: "Solidity, Foundry, OpenZeppelin, ERC-20, ERC-1155, EVM, Smart Contracts, DeFi Fundamentals",
+    items:
+      "Solidity, Foundry, OpenZeppelin, Chainlink Price Feeds, ERC-20, ERC-1155, EVM, Smart Contracts, DeFi Fundamentals",
   },
   {
     category: "Quant / Trading Systems",
@@ -149,6 +153,7 @@ intersection of software engineering, financial markets, quantitative research, 
     items: "AWS (EC2, IAM, Lambda), Vercel, Railway, Render, GitHub Actions, pm2, Cloudflare Tunnels",
   },
   { category: "Enterprise Systems", items: "Odoo ERP, ORM, XML, QWeb, Workflow Automation" },
+  { category: "AI-Assisted Development", items: "Claude Code, Codex" },
 ]
 ```
 
@@ -190,6 +195,11 @@ intersection of software engineering, financial markets, quantitative research, 
 **projects.js**
 ```js
 [
+  {
+    name: "OrderKeeper — Decentralized Limit-Order Keeper Bot for EVM Chains",
+    tech:
+      "Solidity, Foundry, OpenZeppelin, Chainlink Price Feeds, Uniswap V2, TypeScript, Fastify, viem, wagmi, React, PostgreSQL, Prisma",
+  },
   {
     name: "QuantLab — Algorithmic Trading & Quantitative Research Platform",
     tech: "Python, PostgreSQL, REST APIs, Backend Architecture, Trading Systems, Quantitative Research",
@@ -275,6 +285,10 @@ When creating/updating a `src/content/<slug>/` directory for a specific job:
 - **skills.js / projects.js**: reorder/prioritize entries so the most
   relevant items to that job come first. Only reorder — never add
   technologies, tools, or projects that aren't in `base/`.
+  - **Web3 roles**: `OrderKeeper` (the flagship, most recent web3 project —
+    a decentralized limit-order keeper bot built directly on Chainlink Price
+    Feeds and Uniswap) must be the first project listed, ahead of any other
+    reordering.
 - **summary.js**: rewrite as 2-4 lines reflecting the language/domain of the
   job (e.g. lead with "quant" framing for a trading role, "on-chain"
   framing for a protocol role), always grounded in experience already present

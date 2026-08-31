@@ -5,14 +5,6 @@ module.exports = [
       "Solidity, Foundry, OpenZeppelin, Chainlink Price Feeds, Uniswap V2, TypeScript, Fastify, viem, wagmi, React, PostgreSQL, Prisma",
   },
   {
-    name: "QuantLab — Algorithmic Trading & Quantitative Research Platform",
-    tech: "Python, PostgreSQL, REST APIs, Backend Architecture, Trading Systems, Quantitative Research",
-  },
-  {
-    name: "FlowLedger — Personal Finance SaaS Platform",
-    tech: "React, TypeScript, PostgreSQL, REST APIs, Authentication, SaaS",
-  },
-  {
     name: "DeFi Staking Protocol — staking + auto-compounding vault + wrapped token",
     tech: "Solidity, Foundry, ERC-20",
   },
@@ -23,5 +15,13 @@ module.exports = [
   {
     name: "Upgradeable Game Economy — ERC-1155 game economy with UUPS proxy",
     tech: "Solidity, Foundry, ERC-1155, UUPS Proxy",
+  },
+  {
+    name: "QuantLab — Algorithmic Trading & Quantitative Research Platform",
+    tech: "Python, PostgreSQL, REST APIs, Backend Architecture, Trading Systems, Quantitative Research",
+  },
+  {
+    name: "FlowLedger — Personal Finance SaaS Platform",
+    tech: "React, TypeScript, PostgreSQL, REST APIs, Authentication, SaaS",
   },
 ];
