@@ -4,7 +4,7 @@ module.exports = [
   {
     category: "Blockchain",
     items:
-      "Solidity, Foundry, OpenZeppelin, Chainlink Price Feeds, ERC-20, ERC-1155, EVM, Smart Contracts, DeFi Fundamentals",
+      "Solidity, Foundry, OpenZeppelin, Chainlink Price Feeds, Echidna, Slither, ERC-20, ERC-1155, EVM, Smart Contracts, DeFi Fundamentals",
   },
   {
     category: "Quant / Trading Systems",
