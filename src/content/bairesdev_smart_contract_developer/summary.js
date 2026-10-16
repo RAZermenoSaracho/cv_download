@@ -1,0 +1,1 @@
+module.exports = "Smart-contract developer working in Solidity and Foundry with OpenZeppelin, Chainlink price feeds, Uniswap V2, ERC-20, ERC-1155 and UUPS proxies, with testing and analysis in Foundry, Echidna and Slither. Built and verified OrderKeeper on Sepolia and completed a Web3 Solidity bootcamp. Develops backend features at Capital One Mexico.";

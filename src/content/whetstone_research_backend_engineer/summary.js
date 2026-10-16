@@ -1,0 +1,1 @@
+module.exports = "Backend engineer with TypeScript and Node experience (Fastify, viem, Prisma, PostgreSQL) and a Solidity and Foundry background. Built OrderKeeper, a DeFi project with an order indexer, a keeper bot, Chainlink price feeds and Uniswap V2 execution, tested with fork tests and 100% contract coverage. Develops backend features at Capital One Mexico on AWS.";

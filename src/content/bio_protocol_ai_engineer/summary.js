@@ -1,0 +1,1 @@
+module.exports = "Python backend engineer (FastAPI, PostgreSQL, REST APIs) who builds with agentic tools every day: Claude Code, Codex, Gemini, MCP, and spec-driven development with OpenSpec. Author of an open-source MCP integration for Odoo and of QuantLab, a Python trading research platform. Currently develops backend features at Capital One Mexico on AWS.";

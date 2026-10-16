@@ -1,0 +1,1 @@
+module.exports = "Python-first software engineer with backend, PostgreSQL and REST API experience and a quantitative research side: QuantLab, a personal algorithmic trading platform for designing and backtesting strategies. Open-source Odoo modules in Python and 3 years customizing and supporting Odoo. Develops backend features at Capital One Mexico on AWS.";

@@ -1,0 +1,1 @@
+module.exports = "Software engineer building blockchain applications across the stack: Solidity contracts with Foundry, TypeScript and Node services with viem, and React frontends with wagmi. Built OrderKeeper (contracts, indexer, keeper bot, frontend) on Sepolia and develops backend features at Capital One Mexico on AWS.";

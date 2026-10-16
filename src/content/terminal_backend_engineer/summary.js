@@ -1,0 +1,1 @@
+module.exports = "Backend software engineer developing customer-facing account workflows at Capital One Mexico on AWS, with a CI/CD and automated-testing workflow, security fixes and accessibility work. Python, PostgreSQL and REST API background, with 3 years diagnosing production issues at Odoo through SQL and log analysis.";

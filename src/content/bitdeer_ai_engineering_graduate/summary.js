@@ -1,0 +1,1 @@
+module.exports = "Software engineer with Python, PostgreSQL and AWS experience who builds with agentic tools daily (Claude Code, Codex, MCP). Built an open-source MCP integration for Odoo and QuantLab, a Python research platform. Develops backend features at Capital One Mexico and has self-hosted services behind Cloudflare Tunnels.";
