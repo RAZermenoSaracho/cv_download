@@ -1,7 +1,7 @@
 module.exports = [
   {
     institution: "Metana",
-    program: "Full Stack & Web3 Solidity Bootcamp",
+    program: "Full Stack & Web3 Solidity Bootcamp (Cohort Sol81)",
     dates: "In progress, expected completion August 2026",
   },
   {

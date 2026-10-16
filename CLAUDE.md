@@ -109,6 +109,24 @@ Note on `AI-Assisted Development`: Ricardo is working toward a Claude Code
 certification but has not yet obtained it — never phrase this as a
 certification held, only as familiarity with the listed tools.
 
+Note on Java/Spring Boot: this is Ricardo's current working stack at Capital One
+and real shipped experience, but it is **not** a mastery area — he navigates it
+with heavy AI assistance (Claude Code, Gemini). Python remains his strongest
+language, which is why it leads the Backend list and the summary's stack line.
+Never position Ricardo as a Java specialist, never lead a tailored CV with Java,
+and never tailor toward senior/staff Java-first roles as though Java were a
+strength.
+
+Note on Capital One work: keep it at the domain level (features, workflows,
+practices) and never describe internal architecture, systems, timelines, or
+other non-public detail. The Discover network integration is only the area
+Ricardo is **onboarding onto** — never claim results, delivered work, or
+specifics there. Ricardo's team is *about to* adopt the BMAD method but has not
+yet, so BMAD must not appear as experience.
+
+Note on client regions: the regions of Ricardo's Odoo support clients are
+unspecified — never describe them as "international" or name any region.
+
 **header.js**
 ```js
 {
@@ -128,21 +146,26 @@ certification held, only as familiarity with the listed tools.
 **summary.js**
 ```
 Software Engineer with experience in backend financial systems, REST APIs, and quantitative
-technologies. Currently at Capital One Mexico. Previous experience at Odoo (functional and
-technical support) and a background in civil engineering project management. Stack: Python,
-PostgreSQL, JavaScript/TypeScript, React, Solidity, Foundry. Particular interest in the
-intersection of software engineering, financial markets, quantitative research, and DeFi.
+technologies. Currently at Capital One Mexico, developing backend features in Java and Spring
+Boot on AWS. Previous experience at Odoo (functional and technical support) and a background
+in civil engineering project management. Stack: Python, PostgreSQL, JavaScript/TypeScript,
+React, Java, Spring Boot, Solidity, Foundry. Particular interest in the intersection of
+software engineering, financial markets, quantitative research, and DeFi.
 ```
 
 **skills.js**
 ```js
 [
-  { category: "Backend", items: "REST APIs, Authentication, PostgreSQL, SQL, Database Design, FastAPI" },
+  {
+    category: "Backend",
+    items:
+      "Python, REST APIs, Authentication, PostgreSQL, SQL, Database Design, FastAPI, Fastify, Prisma, Java, Spring Boot",
+  },
   { category: "Frontend", items: "React, TypeScript, Tailwind CSS, Vite" },
   {
     category: "Blockchain",
     items:
-      "Solidity, Foundry, OpenZeppelin, Chainlink Price Feeds, Echidna, Slither, ERC-20, ERC-1155, EVM, Smart Contracts, DeFi Fundamentals",
+      "Solidity, Foundry, OpenZeppelin, Chainlink Price Feeds, Uniswap V2, viem, wagmi, Echidna, Slither, ERC-20, ERC-1155, EVM, Smart Contracts, DeFi Fundamentals",
   },
   {
     category: "Quant / Trading Systems",
@@ -150,10 +173,14 @@ intersection of software engineering, financial markets, quantitative research, 
   },
   {
     category: "Cloud & DevOps",
-    items: "AWS (EC2, IAM, Lambda), Vercel, Railway, Render, GitHub Actions, pm2, Cloudflare Tunnels",
+    items:
+      "AWS (EC2, IAM, Lambda), Git, CI/CD, GitHub Actions, Vercel, Railway, Render, pm2, Cloudflare Tunnels",
   },
-  { category: "Enterprise Systems", items: "Odoo ERP, ORM, XML, QWeb, Workflow Automation" },
-  { category: "AI-Assisted Development", items: "Claude Code, Codex" },
+  { category: "Enterprise Systems", items: "Odoo ERP, Odoo Studio, ORM, XML, QWeb, Workflow Automation" },
+  {
+    category: "AI-Assisted Development",
+    items: "Claude Code, Codex, Gemini, OpenSpec (spec-driven development), MCP",
+  },
 ]
 ```
 
@@ -165,9 +192,13 @@ intersection of software engineering, financial markets, quantitative research, 
     role: "Software Engineer",
     dates: "2026 – Present",
     achievements: [
-      "Develop backend software in a fintech environment, contributing to APIs, financial systems, and cloud engineering",
-      "Collaborate on delivering production-grade software with modern practices: testing, CI/CD, code reviews, Agile",
-      "Apply backend, database, API, and systems-thinking expertise to build reliable and scalable financial software",
+      "Develop backend features in Java and Spring Boot for customer-facing account workflows on the Recoveries team, deployed on AWS",
+      "Shipped account-servicing features including cancellation of Discover offers and cancellation of multiple payments in a single operation",
+      "Remediated security vulnerabilities across multiple repositories, including insecure direct object reference (IDOR) issues",
+      "Resolved accessibility issues in customer-facing flows",
+      "Deliver changes through a Git pull-request and CI/CD workflow with automated testing on every change",
+      "Use agentic development with Claude Code daily, including spec-driven development with OpenSpec",
+      "Currently onboarding onto the Discover network integration following Capital One's acquisition of Discover",
     ],
   },
   {
@@ -175,9 +206,11 @@ intersection of software engineering, financial markets, quantitative research, 
     role: "Functional & Technical Support Engineer",
     dates: "12/2023 – 04/2026",
     achievements: [
+      "Resolved 1,000+ support tickets, diagnosing production issues through SQL analysis, log investigation, and business process validation",
+      "Served as the support team's subject-matter expert for Odoo Studio: custom fields, views, automated actions, reports, and no-code customizations",
+      "Held the highest support rating on the team and resolved the highest volume of expert tickets — escalations from other engineers' tickets that required specialist support",
       "Developed and customized ERP solutions using Python, PostgreSQL, XML, and QWeb",
-      "Diagnosed and resolved complex production issues through SQL analysis, log investigation, and business process validation",
-      "Collaborated with developers and consultants to deliver scalable solutions for international clients",
+      "Collaborated with developers and consultants to deliver scalable solutions for clients",
     ],
   },
   {
@@ -185,50 +218,99 @@ intersection of software engineering, financial markets, quantitative research, 
     role: "Project Manager",
     dates: "2021 – 2023",
     achievements: [
-      "Managed construction and real estate projects: budgeting, scheduling, execution, and stakeholder coordination",
-      "Led multidisciplinary teams of up to 20 people (engineering, architecture, contractors, suppliers)",
+      "Managed construction and real estate projects end to end, covering budgeting, scheduling, and execution",
+      "Coordinated stakeholders across every project phase, from initial planning through final delivery",
+      "Led multidisciplinary teams of up to 20 people, including engineers, architects, contractors, and suppliers",
     ],
   },
 ]
 ```
 
 **projects.js**
+
+Each entry may carry an optional `description` (rendered between the name and the
+`Tech:` line). The descriptions below are the approved wording — see the
+"Project claim limits" note under this block before rephrasing any of them.
+
 ```js
 [
   {
     name: "OrderKeeper — Decentralized Limit-Order Keeper Bot for EVM Chains",
+    description:
+      "Trustless limit-order keeper: users deposit funds with a price condition, and a keeper bot monitors Chainlink price feeds to trigger on-chain execution through Uniswap V2 once the condition is met. Four services: Foundry contracts, an order indexer, the keeper bot, and a web frontend. Deployed and Etherscan-verified on Sepolia testnet with 100% contract coverage and passing fork tests; open source, live demo at orderkeeper.razs.dev. Metana bootcamp capstone.",
     tech:
-      "Solidity, Foundry, OpenZeppelin, Chainlink Price Feeds, Uniswap V2, TypeScript, Fastify, viem, wagmi, React, PostgreSQL, Prisma",
+      "Solidity, Foundry, OpenZeppelin, Chainlink Price Feeds, Uniswap V2, TypeScript, Node, Fastify, viem, wagmi, React, Vite, PostgreSQL, Prisma",
   },
   {
     name: "QuantLab — Algorithmic Trading & Quantitative Research Platform",
+    description:
+      "Personal algorithmic trading platform built and used to design and test my own trading strategies. Single user, not a public product.",
     tech: "Python, PostgreSQL, REST APIs, Backend Architecture, Trading Systems, Quantitative Research",
   },
   {
     name: "FlowLedger — Personal Finance SaaS Platform",
+    description:
+      "Personal finance SaaS platform, deployed and currently in a testing phase with a small circle of family and friends.",
     tech: "React, TypeScript, PostgreSQL, REST APIs, Authentication, SaaS",
   },
   {
+    name: "odoo_bim — BIM/IFC Integration for Odoo 19 Community",
+    description: "Open-source module bringing BIM/IFC integration to Odoo 19 Community.",
+    tech: "Odoo 19, Python",
+  },
+  {
+    name: "odooers_forum — Community Q&A Forum Module for Odoo 19",
+    description: "Open-source community Q&A forum module for Odoo 19.",
+    tech: "Odoo 19, Python",
+  },
+  {
+    name: "odoo_mcp — MCP Integration for Odoo",
+    description: "Open-source MCP integration for Odoo.",
+    tech: "Odoo, MCP",
+  },
+  {
+    name: "many2many_razs_widget — Custom many2many Tags Widget for Odoo",
+    description: "Open-source custom many2many tags widget for Odoo.",
+    tech: "Odoo",
+  },
+  {
     name: "DeFi Staking Protocol — staking + auto-compounding vault + wrapped token",
+    description: "Metana bootcamp project.",
     tech: "Solidity, Foundry, ERC-20",
   },
   {
     name: "DAO Governance System — on-chain governance with treasury and participation-based voting",
+    description: "Metana bootcamp project.",
     tech: "Solidity, Foundry",
   },
   {
     name: "Upgradeable Game Economy — ERC-1155 game economy with UUPS proxy",
+    description: "Metana bootcamp project.",
     tech: "Solidity, Foundry, ERC-1155, UUPS Proxy",
   },
 ]
 ```
+
+**Project claim limits — never exceed these:**
+- `OrderKeeper` is a Sepolia **testnet demo**. Never describe it as a production
+  product and never cite user numbers.
+- `QuantLab` is single-user (Ricardo only) and not a public product.
+- `FlowLedger` is **in a testing phase**, used only by Ricardo plus close family
+  and friends. Never call it launched; never give user numbers beyond that.
+- The three Solidity projects (staking protocol, DAO governance, ERC-1155 game
+  economy) are **Metana bootcamp projects** and were **not audited by any third
+  party** — never use the word "audited", and never state a deployment status.
+- The four `odoo_*` repos are public open-source work on Ricardo's GitHub. The
+  Odoo **support** period (12/2023 – 04/2026) involved fixing issues directly in
+  client databases, **not** repository contributions — never present that period
+  as open-source contribution.
 
 **education.js**
 ```js
 [
   {
     institution: "Metana",
-    program: "Full Stack & Web3 Solidity Bootcamp",
+    program: "Full Stack & Web3 Solidity Bootcamp (Cohort Sol81)",
     dates: "In progress, expected completion August 2026",
   },
   {
