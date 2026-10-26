@@ -10,7 +10,7 @@
 
 - [x] 2.1 `pm2 stop cv-download-api` (no observation period, owner decision)
 - [x] 2.2 `pm2 delete cv-download-api` then `pm2 save`
-- [ ] 2.3 Owner: remove the `cv-api.razs.dev` ingress block with sudo, `sudo launchctl kickstart -k system/com.cloudflare.cloudflared`
+- [x] 2.3 Owner removed the `cv-api.razs.dev` ingress block and restarted cloudflared; verified 2026-10-26: `grep -c 'cv-api\|8421' /etc/cloudflared/config.yml` = 0, `https://cv-api.razs.dev/cv` unreachable (curl code 000), `dig` empty
 - [x] 2.4 `cv-api.razs.dev` DNS record deleted (CNAME to tunnel, via Cloudflare API)
 - [x] 2.5 Deploy workflow disabled, dedicated runner `~/actions-runners/cv_download` unloaded and moved to Trash, GitHub repo archived
 - [x] 2.6 `/Users/razs/production/cv_download` moved to Trash after 1.5 verified
@@ -18,4 +18,4 @@
 
 ## 3. Rollback (if needed)
 
-- [ ] 3.1 Per step: `pm2 start`, restore ingress, recreate DNS, unarchive, restore from backup
+- [x] 3.1 Rollback documented (not exercised, it would cause needless downtime). Per step: `pm2 start`, restore ingress, recreate DNS, unarchive, restore from backup
