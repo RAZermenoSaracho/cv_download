@@ -7,19 +7,19 @@
 - **WHEN** the production check has not passed
 - **THEN** no retirement step runs
 
-### Requirement: Ordered, observed retirement
-Retirement SHALL proceed in this order: `pm2 stop`, an observation period of N days, `pm2 delete` and `pm2 save`, owner removal of the tunnel ingress with sudo and cloudflared restart, owner deletion of the `cv-api.razs.dev` DNS record, GitHub archive, local directory to Trash after a backup. The agent SHALL NOT edit `/etc/cloudflared/config.yml`.
+### Requirement: Ordered retirement without an observation period
+There SHALL be no observation period: retirement runs right after the production E2E verification, in this order: `pm2 stop`, `pm2 delete` and `pm2 save`, owner removal of the tunnel ingress with sudo and cloudflared restart, deletion of the `cv-api.razs.dev` DNS record, GitHub archive, local directory to Trash after a backup. Per-job `/<slug>` CV endpoints are retired with the service. The agent SHALL NOT edit `/etc/cloudflared/config.yml`.
 
-#### Scenario: Problem during observation
-- **WHEN** a broken download or an unexpected `/<slug>` request is found while stopped
-- **THEN** `pm2 start cv-download-api` restores service and later steps wait
+#### Scenario: Problem after retirement
+- **WHEN** a broken download is found after a step
+- **THEN** the rollback in the tasks restores service (`pm2 start`, ingress, DNS, unarchive, backup)
 
-### Requirement: Base content preserved
-`src/content/base` SHALL be copied to its new location and the Odoo import script's default path updated and checked before the directory is deleted.
+### Requirement: Base content not depended on
+`job.profile` 14 in Odoo SHALL be the single source of truth for the CV, and `import_cv_download.py` SHALL require an explicit `CV_CONTENT_DIR` instead of a default path into the retired directory.
 
-#### Scenario: Import script after the move
-- **WHEN** `import_cv_download.py` runs with its default path after the directory is trashed
-- **THEN** it reads the preserved content and succeeds
+#### Scenario: Import script without a path
+- **WHEN** `import_cv_download.py` runs without `CV_CONTENT_DIR`
+- **THEN** it exits with a clear error
 
 ### Requirement: Per-job CV fate recorded
 The owner's decision on the `/<slug>` CVs SHALL be recorded in this change before step 1, after grepping for consumers.
